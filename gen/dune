@@ -1,0 +1,68 @@
+(library
+ (name cryptowatch_proto)
+ (public_name cryptowatch-proto)
+ (flags -w -39)
+ (libraries piqirun.pb))
+
+(rule
+ (targets asset.proto.piqi)
+ (deps    asset.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets asset_piqi.ml)
+ (deps    asset.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))
+
+(rule
+ (targets trading.proto.piqi)
+ (deps    trading.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets trading_piqi.ml)
+ (deps    trading.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))
+
+(rule
+ (targets market.proto.piqi)
+ (deps    market.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets market_piqi.ml)
+ (deps    market.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))
+
+(rule
+ (targets pair.proto.piqi)
+ (deps    pair.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets pair_piqi.ml)
+ (deps    pair.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))
+
+(rule
+ (targets stream.proto.piqi)
+ (deps    stream.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets stream_piqi.ml)
+ (deps    stream.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))
+
+(rule
+ (targets broker.proto.piqi)
+ (deps    broker.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets broker_piqi.ml)
+ (deps    (glob_files *.piqi))
+ (action  (run piqic-ocaml broker.proto.piqi)))
+
+(rule
+ (targets client.proto.piqi)
+ (deps    client.proto)
+ (action (run piqi of-proto %{deps} -o %{targets})))
+(rule
+ (targets client_piqi.ml)
+ (deps    client.proto.piqi)
+ (action  (run piqic-ocaml %{deps})))

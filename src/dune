@@ -1,0 +1,4 @@
+(library
+ (name cryptowatch)
+ (public_name cryptowatch)
+ (libraries cryptowatch_proto))
